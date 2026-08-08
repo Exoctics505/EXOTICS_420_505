@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu Humo | Hookah, Shisha & Lounge Shop</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#ff2a5f',
+              dark: '#0a0a0c',
+              card: '#121216',
+              border: '#22222a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-nav { background: rgba(10, 10, 12, 0.8); backdrop-filter: blur(12px); }
+  </style>
+</head>
+<body class="bg-brand-dark text-slate-100 min-h-screen flex flex-col selection:bg-brand-red selection:text-white">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 border-b border-brand-border glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-red to-orange-500 flex items-center justify-center shadow-lg shadow-brand-red/20">
+          <i data-lucide="flame" class="w-6 h-6 text-white"></i>
+        </div>
+        <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">EXOTICS_420_505</span>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-400">
+        <a href="#cat" class="hover:text-brand-red transition-colors">Catálogo</a>
+        <a href="#servicios" class="hover:text-brand-red transition-colors">WAXINI</a>
+        <a href="#contacto" class="hover:text-brand-red transition-colors">Quienes somos</a>
+      </nav>
+
+      <button onclick="toggleCart()" class="relative p-2.5 rounded-xl bg-brand-card border border-brand-border hover:border-brand-red/50 transition-all group">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-300 group-hover:text-brand-red transition-colors"></i>
+        <span id="cart-badge" class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-brand-red text-white text-[11px] font-bold rounded-full flex items-center justify-center hidden">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative py-24 overflow-hidden border-b border-brand-border">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-red/15 via-transparent to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-xs font-bold uppercase tracking-wider mb-6">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Experiencia Premium
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight mb-6 leading-tight">
+        EXOTICS_420_505 | WAXini, Comestibles & mas Shop <br class="hidden sm:inline"/>
+        <span class="bg-gradient-to-r from-brand-red via-pink-500 to-orange-400 bg-clip-text text-transparent">de Clase Mundial</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg mb-8 leading-relaxed">
+        Equipos de alta gama, esencias exclusivas y servicio de catering para eventos sociales y corporativos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#cat" class="px-8 py-3.5 rounded-xl bg-brand-red text-white font-bold hover:bg-brand-red/90 transition-all shadow-lg shadow-brand-red/25 flex items-center justify-center gap-2">
+          Ver Catálogo <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catálogo -->
+  <main id="cat" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div>
+        <h2 class="text-2xl sm:text-3xl font-bold">Nuestros Productos</h2>
+        <p class="text-slate-400 text-sm mt-1">Explora la selección disponible para pedido inmediato</p>
+      </div>
+
+      <!-- Filtros -->
+      <div class="flex flex-wrap gap-2" id="filter-buttons">
+        <button onclick="filterCategory('todos')" class="filter-btn active px-4 py-2 rounded-xl border border-brand-red bg-brand-red text-white text-xs font-bold transition-all">Todos</button>
+        <button onclick="filterCategory('hookahs')" class="filter-btn px-4 py-2 rounded-xl border border-brand-border bg-brand-card text-slate-400 hover:text-white text-xs font-bold transition-all">Carts</button>
+        <button onclick="filterCategory('sabores')" class="filter-btn px-4 py-2 rounded-xl border border-brand-border bg-brand-card text-slate-400 hover:text-white text-xs font-bold transition-all">NerdX</button>
+        <button onclick="filterCategory('vapes')" class="filter-btn px-4 py-2 rounded-xl border border-brand-border bg-brand-card text-slate-400 hover:text-white text-xs font-bold transition-all">Vapes</button>
+      </div>
+    </div>
+
+    <!-- Grid de Productos -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="products-grid"></div>
+  </main>
+
+  <!-- Sliding Cart Drawer -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleCart()"></div>
+    <div class="absolute right-0 top-0 h-full w-full max-w-md bg-brand-card border-l border-brand-border p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 shadow-2xl pointer-events-auto" id="drawer-content">
+      
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-brand-border">
+          <div class="flex items-center gap-2">
+            <i data-lucide="shopping-cart" class="w-5 h-5 text-brand-red"></i>
+            <h3 class="font-bold text-lg">Tu Pedido</h3>
+          </div>
+          <button onclick="toggleCart()" class="p-2 rounded-lg hover:bg-brand-border text-slate-400 hover:text-white">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div id="cart-items" class="py-6 flex flex-col gap-4 max-h-[60vh] overflow-y-auto">
+          <p class="text-slate-500 text-center py-8 text-sm">Tu carrito está vacío.</p>
+        </div>
+      </div>
+
+      <div class="border-t border-brand-border pt-6">
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-slate-400 text-sm font-semibold">Total estimado</span>
+          <span id="cart-total" class="text-2xl font-black text-brand-red">$0.00</span>
+        </div>
+        <button onclick="sendWhatsAppOrder()" class="w-full py-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+          <i data-lucide="message-circle" class="w-5 h-5"></i> Completar por WhatsApp
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="border-t border-brand-border py-8 bg-brand-card text-center text-xs text-slate-500">
+    <p>&copy; 2026 EXOTICS NI 420_505. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Script Lógica Frontend -->
+  <script>
+    const NUMERO_WHATSAPP = "+50587340117"; // Configura tu número aquí
+
+    const productosData = [
+      { id: 1, categoria: 'vapes', nombre: '2G 92% THC EXOTICS DISPOSABLE', precio: 49.99, img: 'img/EXOTICS1.jpg' },
+      { id: 2, categoria: 'carts', nombre: '1G 92% THC EXOTICS Cart', precio: 20.00, img: 'img/EXOTICS2.jpg' },
+      { id: 3, categoria: 'NerdX', nombre: '500 mg THC NERDX Gummy ', precio: 20.00, img: 'img/EXOTICSNERDSX.jpg' },
+    
+    ];
+
+    let carrito = [];
+
+    function renderProducts(items) {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = items.map(p => `
+        <div class="group bg-brand-card border border-brand-border rounded-2xl overflow-hidden hover:border-brand-red/40 transition-all duration-300 flex flex-col justify-between">
+          <div class="relative overflow-hidden aspect-square">
+            <img src="${p.img}" alt="${p.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-3 left-3 bg-brand-dark/80 backdrop-blur-md text-slate-300 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md border border-brand-border">${p.categoria}</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-lg mb-1 group-hover:text-brand-red transition-colors">${p.nombre}</h3>
+              <p class="text-brand-red font-extrabold text-xl mb-4">$${p.precio.toFixed(2)}</p>
+            </div>
+            <button onclick="addToCart(${p.id})" class="w-full py-3 rounded-xl bg-brand-border hover:bg-brand-red text-slate-200 hover:text-white font-bold text-sm transition-all flex items-center justify-center gap-2">
+              <i data-lucide="plus" class="w-4 h-4"></i> Agregar al Carrito
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-red', 'border-brand-red', 'text-white');
+        btn.classList.add('bg-brand-card', 'border-brand-border', 'text-slate-400');
+      });
+      event.target.classList.add('bg-brand-red', 'border-brand-red', 'text-white');
+      
+      const filtered = cat === 'todos' ? productosData : productosData.filter(p => p.categoria === cat);
+      renderProducts(filtered);
+    }
+
+    function addToCart(id) {
+      const prod = productosData.find(p => p.id === id);
+      const item = carrito.find(p => p.id === id);
+      if (item) { item.cantidad++; } else { carrito.push({ ...prod, cantidad: 1 }); }
+      updateCartUI();
+      toggleCart(true);
+    }
+
+    function updateCartUI() {
+      const badge = document.getElementById('cart-badge');
+      const itemsContainer = document.getElementById('cart-items');
+      const totalContainer = document.getElementById('cart-total');
+
+      const totalItems = carrito.reduce((acc, curr) => acc + curr.cantidad, 0);
+      badge.innerText = totalItems;
+      badge.classList.toggle('hidden', totalItems === 0);
+
+      if (carrito.length === 0) {
+        itemsContainer.innerHTML = '<p class="text-slate-500 text-center py-8 text-sm">Tu carrito está vacío.</p>';
+        totalContainer.innerText = '$0.00';
+        return;
+      }
+
+      let total = 0;
+      itemsContainer.innerHTML = carrito.map(item => {
+        const subtotal = item.precio * item.cantidad;
+        total += subtotal;
+        return `
+          <div class="flex items-center justify-between p-3 rounded-xl bg-brand-dark border border-brand-border">
+            <div>
+              <p class="font-bold text-sm">${item.nombre}</p>
+              <p class="text-xs text-slate-400">$${item.precio.toFixed(2)} x ${item.cantidad}</p>
+            </div>
+            <span class="font-bold text-brand-red">$${subtotal.toFixed(2)}</span>
+          </div>
+        `;
+      }).join('');
+
+      totalContainer.innerText = `$${total.toFixed(2)}`;
+    }
+
+    function toggleCart(open = null) {
+      const drawer = document.getElementById('cart-drawer');
+      const content = document.getElementById('drawer-content');
+      
+      const isOpen = open !== null ? open : drawer.classList.contains('pointer-events-none');
+
+      if (isOpen) {
+        drawer.classList.remove('pointer-events-none', 'opacity-0');
+        content.classList.remove('translate-x-full');
+      } else {
+        drawer.classList.add('opacity-0');
+        content.classList.add('translate-x-full');
+        setTimeout(() => drawer.classList.add('pointer-events-none'), 300);
+      }
+    }
+
+    function sendWhatsAppOrder() {
+      if (carrito.length === 0) return alert("Tu carrito está vacío.");
+      let msg = "¡Hola EXOTICS_420_505! Quiero realizar el siguiente pedido:\n\n";
+      let total = 0;
+      carrito.forEach(i => {
+        msg += `• ${i.nombre} (x${i.cantidad}) - $${(i.precio * i.cantidad).toFixed(2)}\n`;
+        total += i.precio * i.cantidad;
+      });
+      msg += `\n*Total a pagar: $${total.toFixed(2)}*`;
+      window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // Inicializar
+    renderProducts(productosData);
+    lucide.createIcons();
+  </script>
+</body>
+</html>
